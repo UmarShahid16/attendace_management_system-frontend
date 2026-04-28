@@ -1,60 +1,6 @@
-import Link from "next/link";
-
 export default function DashboardScreen() {
   return (
-    <div className="min-h-screen bg-zinc-50 px-4 py-8 dark:bg-black">
-      <main className="mx-auto w-full max-w-6xl rounded-[2rem] bg-white p-6 shadow-2xl shadow-black/5 ring-1 ring-black/5 dark:bg-zinc-950 dark:ring-white/10">
-        <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-          <aside className="rounded-[2rem] border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="space-y-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-600">Admin Portal</p>
-                <h2 className="mt-3 text-2xl font-semibold text-zinc-950 dark:text-zinc-50">Dashboard Menu</h2>
-              </div>
-
-              <nav className="space-y-2">
-                {[
-                  { label: "Overview", href: "#overview" },
-                  { label: "Attendance", href: "#attendance" },
-                  { label: "Leaves", href: "#leaves" },
-                  { label: "Absent Records", href: "#absent" },
-                  { label: "Daily Hours", href: "#daily-hours" },
-                  { label: "Register Employee", href: "/register" },
-                ].map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block rounded-2xl border border-transparent bg-white px-4 py-3 text-sm font-medium text-zinc-700 transition hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:border-sky-500 dark:hover:bg-sky-950/60 dark:hover:text-sky-200"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-
-              <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-                <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Quick stats</p>
-                <div className="mt-4 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
-                  <div className="flex items-center justify-between">
-                    <span>Active today</span>
-                    <span className="font-semibold">118</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Late arrivals</span>
-                    <span className="font-semibold">5</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href="/"
-                className="inline-flex w-full items-center justify-center rounded-2xl border border-sky-600 bg-sky-50 px-4 py-3 text-sm font-semibold text-sky-700 transition hover:bg-sky-100 dark:border-sky-500 dark:bg-sky-950/40 dark:text-sky-200 dark:hover:bg-sky-900"
-              >
-                Back to home
-              </Link>
-            </div>
-          </aside>
-
-          <section className="space-y-8">
+    <section className="space-y-8">
             <div id="overview" className="space-y-3">
               <h1 className="text-4xl font-semibold text-zinc-950 dark:text-zinc-50">Employee Attendance Dashboard</h1>
               <p className="max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
@@ -143,9 +89,6 @@ export default function DashboardScreen() {
                 </table>
               </div>
             </section>
-          </section>
-        </div>
-      </main>
-    </div>
+    </section>
   );
 }
