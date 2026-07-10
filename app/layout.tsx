@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import AppShell from "@/components/ui/layout/AppShell";
+import AppShell from "@/components/layout/AppShell";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   variable: "--font-sans",
@@ -30,7 +32,10 @@ export default function RootLayout({
       className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <AppShell>{children}</AppShell>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <AppShell>{children}</AppShell>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

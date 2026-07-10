@@ -3,16 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  CalendarCheck,
-  CalendarDays,
-  ChevronDown,
-  ClipboardList,
-  LayoutDashboard,
-  UserPlus,
-  Users,
-} from "lucide-react";
+import { ChevronDown, Users } from "lucide-react";
 
+import {
+  MAIN_NAV_ITEMS,
+  USER_MANAGEMENT_ITEMS,
+  isUserManagementRoute,
+} from "@/constants/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -29,34 +26,18 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
-const mainNavItems = [
-  { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { title: "Attendance", href: "/attendance", icon: CalendarCheck },
-  { title: "Leaves", href: "/leaves", icon: CalendarDays },
-];
-
-const userManagementItems = [
-  { title: "Add User", href: "/users/add", icon: UserPlus },
-  { title: "Employee Register", href: "/register", icon: ClipboardList },
-];
-
 const menuButtonClass =
   "h-10 rounded-xl px-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-white/10 hover:text-white data-active:bg-sky-600/90 data-active:text-white data-active:shadow-md data-active:shadow-sky-900/20";
 
 export function DashboardSidebar() {
   const pathname = usePathname();
-  const [isUsersOpen, setIsUsersOpen] = useState(
-    pathname.startsWith("/users") || pathname === "/register"
-  );
+  const [isUsersOpen, setIsUsersOpen] = useState(isUserManagementRoute(pathname));
 
   useEffect(() => {
-    if (pathname.startsWith("/users") || pathname === "/register") {
+    if (isUserManagementRoute(pathname)) {
       setIsUsersOpen(true);
     }
   }, [pathname]);
-
-  const isUserSectionActive =
-    pathname.startsWith("/users") || pathname === "/register";
 
   return (
     <Sidebar className="border-r border-sidebar-border" collapsible="icon">
@@ -82,7 +63,7 @@ export function DashboardSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="gap-1">
-              {mainNavItems.map((item) => (
+              {MAIN_NAV_ITEMS.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton
                     asChild
@@ -92,7 +73,12 @@ export function DashboardSidebar() {
                   >
                     <Link href={item.href}>
                       <item.icon className="size-4 shrink-0" />
-                      <span>{item.title}</span>
+                      <span className="flex-1">{item.title}</span>
+                      {item.badge ? (
+                        <span className="ml-auto flex size-5 items-center justify-center rounded-full bg-amber-500 text-[10px] font-bold text-white group-data-[collapsible=icon]:hidden">
+                          {item.badge}
+                        </span>
+                      ) : null}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -103,7 +89,7 @@ export function DashboardSidebar() {
 
         <SidebarSeparator className="my-4 bg-white/10" />
 
-        <SidebarGroup className="p-0">
+        {/* <SidebarGroup className="p-0">
           <SidebarGroupLabel className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500 group-data-[collapsible=icon]:sr-only">
             Administration
           </SidebarGroupLabel>
@@ -112,7 +98,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   tooltip="User Management"
-                  isActive={isUserSectionActive}
+                  isActive={isUserManagementRoute(pathname)}
                   onClick={() => setIsUsersOpen((open) => !open)}
                   className={cn(menuButtonClass, "justify-between")}
                 >
@@ -131,7 +117,7 @@ export function DashboardSidebar() {
 
               {isUsersOpen && (
                 <div className="mt-0.5 ml-3 flex flex-col gap-0.5 border-l border-white/10 pl-3 group-data-[collapsible=icon]:hidden">
-                  {userManagementItems.map((item) => (
+                  {USER_MANAGEMENT_ITEMS.map((item) => (
                     <SidebarMenuItem key={item.href}>
                       <SidebarMenuButton
                         asChild
@@ -149,7 +135,7 @@ export function DashboardSidebar() {
               )}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
+        </SidebarGroup> */}
       </SidebarContent>
 
       <SidebarFooter className="shrink-0 border-t border-white/5 px-4 py-4">

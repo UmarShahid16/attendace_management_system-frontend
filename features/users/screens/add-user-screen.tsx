@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 
-export default function AddUserScreen() {
+export function AddUserScreen() {
   const [form, setForm] = useState({
     fullName: "",
     email: "",

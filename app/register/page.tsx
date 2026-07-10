@@ -1,4 +1,4 @@
-import RegisterEmployeeScreen from "../screens/RegisterEmployeeScreen";
+import { RegisterEmployeeScreen } from "@/features/employees";
 
 export default function RegisterPage() {
   return <RegisterEmployeeScreen />;

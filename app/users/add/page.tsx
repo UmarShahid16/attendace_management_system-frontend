@@ -1,4 +1,4 @@
-import AddUserScreen from "@/app/screens/AddUserScreen";
+import { AddUserScreen } from "@/features/users";
 
 export default function AddUserPage() {
   return <AddUserScreen />;

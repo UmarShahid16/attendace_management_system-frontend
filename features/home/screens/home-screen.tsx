@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function HomeScreen() {
+export function HomeScreen() {
   return (
     <section className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
@@ -39,10 +39,10 @@ export default function HomeScreen() {
               Go to Dashboard
             </Link>
             <Link
-              href="/users/add"
+              href="/leave-requests"
               className="inline-flex w-full items-center justify-center rounded-2xl border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
             >
-              Create New User
+              Leave Requests
             </Link>
             <Link
               href="/login"
